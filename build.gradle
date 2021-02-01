@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.clubobsidian'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url = 'https://repo.spongepowered.org/maven' }
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.github.clubobsidian:wrappy:2.1.0'
+    testImplementation 'org.apache.commons:commons-lang3:3.9'
+    compileOnly 'org.apache.commons:commons-lang3:3.9'
+    compileOnly 'com.github.clubobsidian:wrappy:2.1.0'
+}
