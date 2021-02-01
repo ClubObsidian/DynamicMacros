@@ -2,6 +2,7 @@ package com.clubobsidian.dynamicmacro;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
@@ -26,8 +27,9 @@ public class MacroParser implements Serializable {
 	}
 
 	public String parseStringMacros(final String replaceIn) {
-		if(replaceIn == null)
+		if(replaceIn == null) {
 			return null;
+		}
 
 		String replace = replaceIn;
 		for(MacroToken token : this.tokens) {
@@ -50,6 +52,10 @@ public class MacroParser implements Serializable {
 		}
 
 		return replace;
+	}
+
+	public Collection<String> parseCollectionMacros(Collection<String> replaceIn) {
+		return this.parseListMacros(new ArrayList<>(replaceIn));
 	}
 
 	@SuppressWarnings("unchecked")

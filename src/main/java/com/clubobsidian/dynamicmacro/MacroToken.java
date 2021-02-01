@@ -13,17 +13,22 @@ public class MacroToken implements Serializable {
 	 */
 	private static final long serialVersionUID = -6384645527099128238L;
 
-	private Map<String, Object> macros;
+	private final Map<String, Object> macros;
 
-	public MacroToken(ConfigurationSection section) {
-		this.parse(section);
+	public MacroToken(Map<String, Object> macros) {
+		this.macros = new LinkedHashMap<>(macros);
 	}
 
-	private void parse(ConfigurationSection section) {
-		this.macros = new LinkedHashMap<>();
+	public MacroToken(ConfigurationSection section) {
+		this.macros = this.parse(section);
+	}
+
+	private Map<String, Object> parse(ConfigurationSection section) {
+		Map<String, Object> parsed = new LinkedHashMap<>();
 		for(String key : section.getKeys()) {
-			this.macros.put(key, section.get(key));
+			parsed.put(key, section.get(key));
 		}
+		return parsed;
 	}
 
 	public Map<String, Object> getMacros() {
